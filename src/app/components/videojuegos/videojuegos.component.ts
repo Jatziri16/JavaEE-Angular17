@@ -9,6 +9,7 @@ import { VideojuegosService } from '../../services/videojuegos.service';
   styleUrl: './videojuegos.component.css'
 })
 export class VideojuegosComponent implements OnInit {
+  listVideojuegos: any = []
   
   constructor(private _videojuegosService: VideojuegosService) { }
 
@@ -19,9 +20,15 @@ export class VideojuegosComponent implements OnInit {
   getVideojuegos()
   {
     this._videojuegosService.getVideojuegos().subscribe(res => {
-      console.log(res)
+      this.listVideojuegos = res;
+      console.log(this.listVideojuegos)
     }, err => {
       console.log(err)
     })
+  }
+
+  trackVideojuegos(index: number, listVideojuegos: any)
+  {
+    return listVideojuegos.cve_vid;
   }
 }
